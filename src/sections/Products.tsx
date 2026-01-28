@@ -5,18 +5,15 @@ const baseUrl = import.meta.env.BASE_URL ?? '/';
 const assetUrl = (path: string) =>
   `${baseUrl}${path}`.replace(/([^:]\/)\/+/g, '$1');
 
+const featuredImage = assetUrl('images/image1.png');
+
 const products = [
   {
     title: 'Hivest',
     description:
       'A social network for smarter investing. Connect with real investors, share portfolios, and learn from the community. Features secure portfolio tracking via broker integration and competitive leaderboards.',
-    images: [
-      assetUrl('images/hivest/logoApp.png'),
-      assetUrl('images/hivest/image1.png'),
-      assetUrl('images/hivest/WhatsApp%20Image%202026-01-24%20at%2016.07.48.jpeg'),
-      assetUrl('images/hivest/WhatsApp%20Image%202026-01-244545%20at%2016.07.48.jpeg'),
-    ],
-    techStack: ['TypeScript', 'Node.js', 'Mobile App', 'iOS'],
+    logo: assetUrl('images/hivest/logoApp.png'),
+    appStoreUrl: 'https://apps.apple.com/il/app/hivest/id6751804629',
     liveUrl: 'https://hivest.app',
     githubUrl: 'https://github.com/PoratEyal/hivestWebsite',
   },
@@ -24,30 +21,15 @@ const products = [
     title: 'ActivityWiz',
     description:
       'AI-powered activity creation platform for youth movement instructors. Generate custom activities or choose from a curated database of ready-made educational content.',
-    images: [
-      assetUrl('images/activityWiz/Screenshot%202026-01-28%20222013.png'),
-      assetUrl('images/activityWiz/Screenshot%202026-01-28%20222102.png'),
-      assetUrl('images/activityWiz/Screenshot%202026-01-28%20222135.png'),
-      assetUrl('images/activityWiz/Screenshot%202026-01-28%20222152.png'),
-      assetUrl('images/activityWiz/Screenshot%202026-01-28%20222202.png'),
-      assetUrl('images/activityWiz/Screenshot%202026-01-28%20222226.png'),
-    ],
-    techStack: ['TypeScript', 'AI/ML', 'React', 'Hebrew UI'],
+    logo: assetUrl('images/activityWiz/logo512.png'),
+    badge: '150K+ users',
     liveUrl: 'https://activitywiz.com/he/youth',
   },
   {
     title: 'Shift Planner',
     description:
       'Web-based shift management application. Allows users to manage and view work shifts for current and upcoming weeks with an intuitive calendar interface.',
-    images: [
-      assetUrl('images/shift/311243396-ba4304f1-0370-4ff0-9f5a-60dcb3833622.png'),
-      assetUrl('images/shift/311243405-dc5d5935-6a27-4dd0-9c2f-02fdc7469af2.png'),
-      assetUrl('images/shift/311243411-c4f0aba8-953e-4927-b14c-7456853f07c7.png'),
-      assetUrl('images/shift/311243415-ce64d5b4-a80a-42ef-adf5-38641ac7cb26.png'),
-      assetUrl('images/shift/311243419-c6dbad8a-e897-4d4c-8728-b97c9376ac61.png'),
-      assetUrl('images/shift/311243534-c0cc9adb-b401-4ad0-801e-d75dd5e11467.png'),
-    ],
-    techStack: ['JavaScript', 'Node.js', 'Express'],
+    logo: assetUrl('images/shift/logo512%20(2).png'),
     githubUrl: 'https://github.com/PoratEyal/Shift-Planner',
   },
 ];
@@ -79,16 +61,26 @@ export function Products() {
         </div>
 
         {/* Products Grid */}
-        <StaggerContainer
-          className="grid md:grid-cols-2 gap-8"
-          staggerDelay={0.15}
-        >
-          {products.map((product) => (
-            <StaggerItem key={product.title}>
-              <ProjectCard {...product} />
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
+        <div className="grid lg:grid-cols-2 gap-16 xl:gap-20 items-center">
+          <StaggerContainer
+            className="flex flex-col gap-6 order-1"
+            staggerDelay={0.15}
+          >
+            {products.map((product) => (
+              <StaggerItem key={product.title}>
+                <ProjectCard {...product} />
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+
+          <div className="relative order-2 hidden lg:block">
+            <img
+              src={featuredImage}
+              alt="My Work showcase"
+              className="w-full h-auto object-contain scale-[1.08] lg:scale-110"
+            />
+          </div>
+        </div>
       </div>
     </section>
   );

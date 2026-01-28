@@ -1,13 +1,11 @@
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, ArrowRight } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
-import { ImageGallery } from './ImageGallery';
-
+import { ExternalLink, Github, ArrowRight, Apple } from 'lucide-react';
 interface ProjectCardProps {
   title: string;
   description: string;
-  images: string[];
-  techStack: string[];
+  logo: string;
+  badge?: string;
+  appStoreUrl?: string;
   liveUrl?: string;
   githubUrl?: string;
 }
@@ -15,40 +13,49 @@ interface ProjectCardProps {
 export function ProjectCard({
   title,
   description,
-  images,
-  techStack,
+  logo,
+  badge,
+  appStoreUrl,
   liveUrl,
   githubUrl,
 }: ProjectCardProps) {
   return (
     <motion.div
-      className="group relative bg-secondary dark:bg-[#0c1016] border border-transparent dark:border-[#1a2230] rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl"
+      className="group relative bg-secondary/70 dark:bg-[#0c1016] rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl"
       whileHover={{ y: -4 }}
     >
-      {/* Image Gallery */}
-      <ImageGallery images={images} alt={title} />
-
+      <div className="absolute right-4 top-4 flex items-center gap-2">
+        {badge && (
+          <div className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium text-primary bg-primary/10 border border-primary/20">
+            {badge}
+          </div>
+        )}
+        {appStoreUrl && (
+          <a
+            href={appStoreUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center rounded-full bg-foreground/10 text-foreground text-xs font-medium px-3 py-1.5 hover:bg-foreground/20 transition-colors"
+          >
+            <Apple size={14} className="mr-2 hidden sm:inline-flex" />
+            <span className="sm:hidden">Download</span>
+            <span className="hidden sm:inline">Download App Store</span>
+          </a>
+        )}
+      </div>
       {/* Content */}
       <div className="p-6">
-        <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
-          {title}
-        </h3>
-        <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+        <div className="flex items-center gap-4 mb-4">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-background/90 dark:bg-[#121824] overflow-hidden">
+            <img src={logo} alt={`${title} logo`} className="h-full w-full object-contain" />
+          </div>
+          <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
+            {title}
+          </h3>
+        </div>
+        <p className="text-muted-foreground text-sm leading-relaxed mb-4 max-h-[3.2em] overflow-hidden">
           {description}
         </p>
-
-        {/* Tech Stack */}
-        <div className="flex flex-wrap gap-2 mb-5">
-          {techStack.map((tech) => (
-            <Badge
-              key={tech}
-              variant="secondary"
-              className="bg-background/80 dark:bg-[#1a1f2a] text-muted-foreground text-xs font-medium"
-            >
-              {tech}
-            </Badge>
-          ))}
-        </div>
 
         {/* Links */}
         <div className="flex items-center gap-4">

@@ -94,7 +94,7 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.4, ease: [0.165, 0.84, 0.44, 1] }}
-            className="flex justify-center items-center order-1 lg:order-2"
+            className="flex justify-center items-center order-1 lg:order-2 mt-8 sm:mt-6 lg:mt-0"
           >
             <div className="relative">
               {/* Glow effect */}
@@ -102,7 +102,7 @@ export function Hero() {
               
               {/* Image container */}
               <motion.div
-                className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden shadow-xl"
+                className="relative w-52 h-52 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-xl"
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
               >
@@ -117,7 +117,7 @@ export function Hero() {
               {skills.map((skill, index) => (
                 <motion.div
                   key={skill.label}
-                  className="absolute px-4 py-2 bg-card/90 backdrop-blur-sm rounded-xl shadow-lg"
+                  className="absolute px-3 py-1.5 sm:px-4 sm:py-2 bg-card/90 backdrop-blur-sm rounded-xl shadow-lg"
                   style={{
                     top: index === 0 ? '-10px' : index === 1 ? 'auto' : index === 2 ? '40%' : 'auto',
                     right: index === 0 ? '-10px' : index === 2 ? '-60px' : 'auto',
@@ -127,8 +127,8 @@ export function Hero() {
                   animate={{ y: [0, index % 2 === 0 ? -5 : 5, 0] }}
                   transition={{ duration: 3 + index * 0.3, repeat: Infinity, ease: 'easeInOut' }}
                 >
-                  <span className="text-lg mr-2">{skill.emoji}</span>
-                  <span className="text-sm font-medium text-foreground">{skill.label}</span>
+                  <span className="text-base sm:text-lg mr-2">{skill.emoji}</span>
+                  <span className="text-xs sm:text-sm font-medium text-foreground">{skill.label}</span>
                 </motion.div>
               ))}
             </div>

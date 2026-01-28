@@ -82,7 +82,7 @@ export function About() {
           </div>
 
           {/* Right Column - Highlights */}
-          <StaggerContainer className="grid sm:grid-cols-2 gap-4" staggerDelay={0.1}>
+          <StaggerContainer className="grid grid-cols-2 gap-4" staggerDelay={0.1}>
             {highlights.map((item) => (
               <StaggerItem key={item.title}>
                 <div className="bg-secondary dark:bg-[#101318] rounded-2xl p-6 h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
