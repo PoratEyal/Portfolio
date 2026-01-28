@@ -3,6 +3,10 @@ import { ArrowDown, Code2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export function Hero() {
+  const baseUrl = import.meta.env.BASE_URL ?? '/';
+  const assetUrl = (path: string) =>
+    `${baseUrl}${path}`.replace(/([^:]\/)\/+/g, '$1');
+
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
@@ -103,7 +107,7 @@ export function Hero() {
                 transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
               >
                 <img
-                  src="/images/1747380383003.jpg"
+                  src={assetUrl('images/1747380383003.jpg')}
                   alt="Eyal Porat"
                   className="w-full h-full object-cover"
                 />

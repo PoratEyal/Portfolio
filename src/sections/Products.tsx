@@ -1,16 +1,20 @@
 import { AnimatedSection, StaggerContainer, StaggerItem } from '@/components/AnimatedSection';
 import { ProjectCard } from '@/components/ProjectCard';
 
+const baseUrl = import.meta.env.BASE_URL ?? '/';
+const assetUrl = (path: string) =>
+  `${baseUrl}${path}`.replace(/([^:]\/)\/+/g, '$1');
+
 const products = [
   {
     title: 'Hivest',
     description:
       'A social network for smarter investing. Connect with real investors, share portfolios, and learn from the community. Features secure portfolio tracking via broker integration and competitive leaderboards.',
     images: [
-      '/images/hivest/logoApp.png',
-      '/images/hivest/image1.png',
-      '/images/hivest/WhatsApp%20Image%202026-01-24%20at%2016.07.48.jpeg',
-      '/images/hivest/WhatsApp%20Image%202026-01-244545%20at%2016.07.48.jpeg',
+      assetUrl('images/hivest/logoApp.png'),
+      assetUrl('images/hivest/image1.png'),
+      assetUrl('images/hivest/WhatsApp%20Image%202026-01-24%20at%2016.07.48.jpeg'),
+      assetUrl('images/hivest/WhatsApp%20Image%202026-01-244545%20at%2016.07.48.jpeg'),
     ],
     techStack: ['TypeScript', 'Node.js', 'Mobile App', 'iOS'],
     liveUrl: 'https://hivest.app',
@@ -21,12 +25,12 @@ const products = [
     description:
       'AI-powered activity creation platform for youth movement instructors. Generate custom activities or choose from a curated database of ready-made educational content.',
     images: [
-      '/images/activityWiz/Screenshot%202026-01-28%20222013.png',
-      '/images/activityWiz/Screenshot%202026-01-28%20222102.png',
-      '/images/activityWiz/Screenshot%202026-01-28%20222135.png',
-      '/images/activityWiz/Screenshot%202026-01-28%20222152.png',
-      '/images/activityWiz/Screenshot%202026-01-28%20222202.png',
-      '/images/activityWiz/Screenshot%202026-01-28%20222226.png',
+      assetUrl('images/activityWiz/Screenshot%202026-01-28%20222013.png'),
+      assetUrl('images/activityWiz/Screenshot%202026-01-28%20222102.png'),
+      assetUrl('images/activityWiz/Screenshot%202026-01-28%20222135.png'),
+      assetUrl('images/activityWiz/Screenshot%202026-01-28%20222152.png'),
+      assetUrl('images/activityWiz/Screenshot%202026-01-28%20222202.png'),
+      assetUrl('images/activityWiz/Screenshot%202026-01-28%20222226.png'),
     ],
     techStack: ['TypeScript', 'AI/ML', 'React', 'Hebrew UI'],
     liveUrl: 'https://activitywiz.com/he/youth',
@@ -36,12 +40,12 @@ const products = [
     description:
       'Web-based shift management application. Allows users to manage and view work shifts for current and upcoming weeks with an intuitive calendar interface.',
     images: [
-      '/images/shift/311243396-ba4304f1-0370-4ff0-9f5a-60dcb3833622.png',
-      '/images/shift/311243405-dc5d5935-6a27-4dd0-9c2f-02fdc7469af2.png',
-      '/images/shift/311243411-c4f0aba8-953e-4927-b14c-7456853f07c7.png',
-      '/images/shift/311243415-ce64d5b4-a80a-42ef-adf5-38641ac7cb26.png',
-      '/images/shift/311243419-c6dbad8a-e897-4d4c-8728-b97c9376ac61.png',
-      '/images/shift/311243534-c0cc9adb-b401-4ad0-801e-d75dd5e11467.png',
+      assetUrl('images/shift/311243396-ba4304f1-0370-4ff0-9f5a-60dcb3833622.png'),
+      assetUrl('images/shift/311243405-dc5d5935-6a27-4dd0-9c2f-02fdc7469af2.png'),
+      assetUrl('images/shift/311243411-c4f0aba8-953e-4927-b14c-7456853f07c7.png'),
+      assetUrl('images/shift/311243415-ce64d5b4-a80a-42ef-adf5-38641ac7cb26.png'),
+      assetUrl('images/shift/311243419-c6dbad8a-e897-4d4c-8728-b97c9376ac61.png'),
+      assetUrl('images/shift/311243534-c0cc9adb-b401-4ad0-801e-d75dd5e11467.png'),
     ],
     techStack: ['JavaScript', 'Node.js', 'Express'],
     githubUrl: 'https://github.com/PoratEyal/Shift-Planner',
