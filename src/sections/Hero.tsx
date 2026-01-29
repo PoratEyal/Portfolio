@@ -62,8 +62,8 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.4, ease: [0.165, 0.84, 0.44, 1] }}
               className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed"
             >
-              I build modern web applications and AI-powered solutions. Based in Tel Aviv, 
-              I specialize in creating impactful digital experiences that make a difference.
+              I specialize in implementing AI-powered solutions across web and mobile applications. 
+              I bring end-to-end expertise to create impactful digital experiences that make a difference.
             </motion.p>
 
             <motion.div

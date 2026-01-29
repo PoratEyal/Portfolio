@@ -6,6 +6,7 @@ import { Products } from '@/sections/Products';
 import { Skills } from '@/sections/Skills';
 import { Contact } from '@/sections/Contact';
 import { Footer } from '@/sections/Footer';
+import { Toaster } from '@/components/ui/sonner';
 import './App.css';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Contact />
         </main>
         <Footer />
+        <Toaster />
       </div>
     </ThemeProvider>
   );

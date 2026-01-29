@@ -1,30 +1,63 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 import { AnimatedSection } from '@/components/AnimatedSection';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Facebook, Github, Instagram, Linkedin, Mail, Send } from 'lucide-react';
+import { toast } from 'sonner';
 
 export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
     
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    
-    // Reset after showing success
-    setTimeout(() => {
-      setIsSubmitted(false);
-      (e.target as HTMLFormElement).reset();
-    }, 3000);
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const message = formData.get('message') as string;
+
+    // EmailJS configuration - replace these with your actual values
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID';
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID';
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY';
+
+    try {
+      // Send email using EmailJS
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          from_name: name,
+          from_email: email,
+          message: message,
+          to_email: 'eyal1.porat@gmail.com', // Your email address
+        },
+        publicKey
+      );
+
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      toast.success('ההודעה נשלחה בהצלחה!');
+      
+      // Reset after showing success
+      setTimeout(() => {
+        setIsSubmitted(false);
+        form.reset();
+      }, 3000);
+    } catch (err) {
+      console.error('Error sending email:', err);
+      setIsSubmitting(false);
+      setError('שגיאה בשליחת ההודעה. אנא נסה שוב מאוחר יותר.');
+      toast.error('שגיאה בשליחת ההודעה');
+    }
   };
 
   const contactLinks = [
@@ -76,14 +109,13 @@ export function Contact() {
 
           <AnimatedSection delay={0.1}>
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mt-4 mb-4">
-              Let's Work <span className="text-primary">Together</span>
+              Let's <span className="text-primary">Connect</span>
             </h2>
           </AnimatedSection>
 
           <AnimatedSection delay={0.2}>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Have a project in mind? Let's create something amazing. 
-              I'm always open to discussing new opportunities.
+              Want to connect or have questions? Feel free to reach out.
             </p>
           </AnimatedSection>
         </div>
@@ -177,6 +209,12 @@ export function Contact() {
                   className="bg-card border-border text-foreground placeholder:text-muted-foreground/50 focus:border-primary focus:ring-primary/20 resize-none"
                 />
               </div>
+
+              {error && (
+                <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20">
+                  <p className="text-sm text-red-500">{error}</p>
+                </div>
+              )}
 
               <motion.div
                 whileHover={{ scale: 1.01 }}

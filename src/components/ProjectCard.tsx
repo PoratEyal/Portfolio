@@ -53,7 +53,7 @@ export function ProjectCard({
             {title}
           </h3>
         </div>
-        <p className="text-muted-foreground text-sm leading-relaxed mb-4 max-h-[3.2em] overflow-hidden">
+        <p className="text-muted-foreground text-sm leading-relaxed mb-4">
           {description}
         </p>
 

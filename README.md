@@ -71,3 +71,43 @@ export default defineConfig([
   },
 ])
 ```
+
+## Email Configuration (EmailJS)
+
+This project uses EmailJS to send emails from the contact form. To set it up:
+
+1. **Sign up for EmailJS**: Go to [https://www.emailjs.com/](https://www.emailjs.com/) and create a free account
+
+2. **Create an Email Service**:
+   - Go to Email Services and add a new service
+   - Connect your email provider (Gmail, Outlook, etc.)
+   - Follow the setup instructions
+
+3. **Create an Email Template**:
+   - Go to Email Templates and create a new template
+   - Use these template variables:
+     - `{{from_name}}` - Sender's name
+     - `{{from_email}}` - Sender's email
+     - `{{message}}` - Message content
+     - `{{to_email}}` - Your email address
+
+4. **Get your credentials**:
+   - Service ID: Found in Email Services
+   - Template ID: Found in Email Templates
+   - Public Key: Found in Account > API Keys
+
+5. **Configure environment variables**:
+   - Copy `.env.example` to `.env`
+   - Fill in your EmailJS credentials:
+     ```
+     VITE_EMAILJS_SERVICE_ID=your_service_id
+     VITE_EMAILJS_TEMPLATE_ID=your_template_id
+     VITE_EMAILJS_PUBLIC_KEY=your_public_key
+     ```
+
+6. **Install dependencies** (if not already installed):
+   ```bash
+   npm install
+   ```
+
+The contact form will now send real emails when users submit it!

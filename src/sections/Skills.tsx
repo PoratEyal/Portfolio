@@ -5,32 +5,32 @@ const skillCategories = [
   {
     emoji: '💻',
     title: 'Frontend',
-    skills: ['React', 'TypeScript', 'JavaScript', 'HTML/CSS', 'Tailwind CSS'],
+    skills: ['React', 'TypeScript', 'React Native', 'HTML/CSS', 'Tailwind CSS'],
   },
   {
     emoji: '⚙️',
     title: 'Backend',
-    skills: ['Node.js', 'Express', 'C#', 'ASP.NET', 'REST APIs'],
+    skills: ['Node.js', 'Express', 'Python', 'C#', 'ASP.NET', 'REST APIs', 'Authentication'],
   },
   {
     emoji: '🤖',
     title: 'AI / ML',
-    skills: ['OpenAI API', 'Chatbots', 'Text-to-Image', 'AI Integration'],
+    skills: ['RAG', 'LangChain', 'Vector Databases', 'Prompt Engineering', 'Embeddings'],
   },
   {
     emoji: '🗄️',
     title: 'Database',
-    skills: ['MongoDB', 'SQL', 'PostgreSQL', 'Firebase'],
+    skills: ['MongoDB', 'SQL', 'PostgreSQL', 'Firebase', 'Prisma'],
   },
   {
     emoji: '🛠️',
     title: 'Tools',
-    skills: ['Git', 'GitHub', 'VS Code', 'Docker', 'Figma'],
+    skills: ['Git', 'GitHub', 'VS Code', 'Cursor', 'Docker', 'Figma', 'Postman', 'Jira'],
   },
   {
     emoji: '📱',
     title: 'Mobile',
-    skills: ['React Native', 'iOS', 'Responsive Design'],
+    skills: ['React Native', 'Expo', 'Android', 'iOS', 'Responsive Design'],
   },
 ];
 

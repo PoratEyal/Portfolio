@@ -11,7 +11,7 @@ const products = [
   {
     title: 'Hivest',
     description:
-      'A social network for smarter investing. Connect with real investors, share portfolios, and learn from the community. Features secure portfolio tracking via broker integration and competitive leaderboards.',
+      'A social network for smarter investing. Connect with real investors, share portfolios, and learn from the community.',
     logo: assetUrl('images/hivest/logoApp.png'),
     appStoreUrl: 'https://apps.apple.com/il/app/hivest/id6751804629',
     liveUrl: 'https://hivest.app',
@@ -28,7 +28,7 @@ const products = [
   {
     title: 'Shift Planner',
     description:
-      'Web-based shift management application. Allows users to manage and view work shifts for current and upcoming weeks with an intuitive calendar interface.',
+      'Web-based shift management application. Allows users to manage and view work shifts for current and upcoming weeks.',
     logo: assetUrl('images/shift/logo512%20(2).png'),
     githubUrl: 'https://github.com/PoratEyal/Shift-Planner',
   },
