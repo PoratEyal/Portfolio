@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
 import { ArrowDown, Code2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 export function Hero() {
+  const isMobile = useIsMobile();
   const baseUrl = import.meta.env.BASE_URL ?? '/';
   const assetUrl = (path: string) =>
     `${baseUrl}${path}`.replace(/([^:]\/)\/+/g, '$1');
@@ -24,12 +26,23 @@ export function Hero() {
     { emoji: '🧠', label: 'RAG' },
   ];
 
+  // On mobile: no infinite float, just static position
+  const floatAnimation = isMobile ? {} : { y: [0, -8, 0] };
+  const floatTransition = isMobile
+    ? { duration: 0.8, delay: 0.4, ease: [0.165, 0.84, 0.44, 1] as number[] }
+    : { duration: 4, repeat: Infinity, ease: 'easeInOut' as const };
+
+  const scrollIndicatorAnimate = isMobile ? {} : { y: [0, 8, 0] };
+  const scrollIndicatorTransition = isMobile
+    ? undefined
+    : { duration: 1.5, repeat: Infinity, ease: 'easeInOut' as const };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background to-secondary/30">
-      {/* Background Elements */}
+      {/* Background Elements – lightweight radial gradients instead of heavy blur */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-[120px]" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-[radial-gradient(circle,hsl(var(--primary)/0.06)_0%,transparent_70%)]" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-[radial-gradient(circle,hsl(217_91%_60%/0.05)_0%,transparent_70%)]" />
       </div>
 
       <div className="relative z-10 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -97,14 +110,14 @@ export function Hero() {
             className="flex justify-center items-center order-1 lg:order-2 mt-8 sm:mt-6 lg:mt-0"
           >
             <div className="relative">
-              {/* Glow effect */}
-              <div className="absolute inset-0 bg-primary/10 rounded-full blur-3xl scale-110" />
+              {/* Glow effect – lighter on mobile */}
+              <div className="absolute inset-0 bg-primary/10 rounded-full scale-110 blur-2xl sm:blur-3xl" />
               
-              {/* Image container */}
+              {/* Image container – float only on desktop */}
               <motion.div
-                className="relative w-52 h-52 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-xl"
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                className="relative w-52 h-52 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-xl will-change-transform"
+                animate={floatAnimation}
+                transition={floatTransition}
               >
                 <img
                   src={assetUrl('images/1747380383003.jpg')}
@@ -113,19 +126,23 @@ export function Hero() {
                 />
               </motion.div>
 
-              {/* Floating skill badges with emojis */}
+              {/* Floating skill badges – static on mobile, float on desktop */}
               {skills.map((skill, index) => (
                 <motion.div
                   key={skill.label}
-                  className="absolute px-3 py-1.5 sm:px-4 sm:py-2 bg-card/90 backdrop-blur-sm rounded-xl shadow-lg"
+                  className="absolute px-3 py-1.5 sm:px-4 sm:py-2 bg-card/95 rounded-xl shadow-lg will-change-transform"
                   style={{
                     top: index === 0 ? '-10px' : index === 1 ? 'auto' : index === 2 ? '40%' : 'auto',
                     right: index === 0 ? '-10px' : index === 2 ? '-60px' : 'auto',
                     bottom: index === 1 ? '-10px' : index === 3 ? '20%' : 'auto',
                     left: index === 1 ? '-10px' : index === 3 ? '-50px' : 'auto',
                   }}
-                  animate={{ y: [0, index % 2 === 0 ? -5 : 5, 0] }}
-                  transition={{ duration: 3 + index * 0.3, repeat: Infinity, ease: 'easeInOut' }}
+                  animate={isMobile ? {} : { y: [0, index % 2 === 0 ? -5 : 5, 0] }}
+                  transition={
+                    isMobile
+                      ? undefined
+                      : { duration: 3 + index * 0.3, repeat: Infinity, ease: 'easeInOut' }
+                  }
                 >
                   <span className="text-base sm:text-lg mr-2">{skill.emoji}</span>
                   <span className="text-xs sm:text-sm font-medium text-foreground">{skill.label}</span>
@@ -146,8 +163,8 @@ export function Hero() {
         <motion.button
           onClick={() => scrollToSection('#about')}
           className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-200"
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+          animate={scrollIndicatorAnimate}
+          transition={scrollIndicatorTransition}
         >
           <span className="text-xs">Scroll Down</span>
           <ArrowDown size={20} />

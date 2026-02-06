@@ -7,6 +7,7 @@ import { Skills } from '@/sections/Skills';
 import { Contact } from '@/sections/Contact';
 import { Footer } from '@/sections/Footer';
 import { Toaster } from '@/components/ui/sonner';
+import { ChatWidget } from '@/components/ChatWidget';
 import './App.css';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         </main>
         <Footer />
         <Toaster />
+        <ChatWidget />
       </div>
     </ThemeProvider>
   );

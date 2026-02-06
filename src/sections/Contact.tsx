@@ -45,7 +45,7 @@ export function Contact() {
 
       setIsSubmitting(false);
       setIsSubmitted(true);
-      toast.success('ההודעה נשלחה בהצלחה!');
+      toast.success('Message sent successfully!');
       
       // Reset after showing success
       setTimeout(() => {
@@ -55,8 +55,8 @@ export function Contact() {
     } catch (err) {
       console.error('Error sending email:', err);
       setIsSubmitting(false);
-      setError('שגיאה בשליחת ההודעה. אנא נסה שוב מאוחר יותר.');
-      toast.error('שגיאה בשליחת ההודעה');
+      setError('Failed to send message. Please try again later.');
+      toast.error('Failed to send message');
     }
   };
 
