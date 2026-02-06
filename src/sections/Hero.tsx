@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, type Transition } from 'framer-motion';
 import { ArrowDown, Code2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -28,9 +28,9 @@ export function Hero() {
 
   // On mobile: no infinite float, just static position
   const floatAnimation = isMobile ? {} : { y: [0, -8, 0] };
-  const floatTransition = isMobile
-    ? { duration: 0.8, delay: 0.4, ease: [0.165, 0.84, 0.44, 1] as [number, number, number, number] }
-    : { duration: 4, repeat: Infinity, ease: 'easeInOut' as const };
+  const floatTransition: Transition = isMobile
+    ? { duration: 0.8, delay: 0.4, ease: [0.165, 0.84, 0.44, 1] }
+    : { duration: 4, repeat: Infinity, ease: 'easeInOut' };
 
   const scrollIndicatorAnimate = isMobile ? {} : { y: [0, 8, 0] };
   const scrollIndicatorTransition = isMobile
